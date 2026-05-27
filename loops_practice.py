@@ -11,5 +11,14 @@ class Practice:
                 break
             print(n)
 
+    def list_words(self):
+        limit = 10
+        words = [f"str{i}" for i in range(limit)]
+        for word in words:
+            print(word)
+
 object_for_pract1 = Practice()
 object_for_pract1.list_numbers()
+
+object_for_words = Practice()
+object_for_words.list_words()
