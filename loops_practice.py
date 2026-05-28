@@ -1,6 +1,7 @@
 import random
 import time
 
+
 class Practice:
 
     def list_numbers(self):
@@ -28,13 +29,19 @@ class Practice:
 
         while iteration < max_iterations:
             current_load = random.randint(0, 100)
-            print(f"Итерация {iteration + 1}: Текущая нагрузка {current_load}%")
+            print(
+                f"Итерация {iteration + 1}:"
+                f"Текущая нагрузка {current_load}%")
 
             if current_load > critical_load_limit:
-                print(f"️ВНИМАНИЕ: Высокая нагрузка на серверы Rostics! ({current_load}%)")
+                print(
+                    f"️ВНИМАНИЕ: Высокая нагрузка на серверы Rostics!"
+                    f"({current_load}%)"
+                )
 
             time.sleep(pause_duration)
             iteration += 1
+
 
 object_for_pract1 = Practice()
 object_for_pract1.list_numbers()
