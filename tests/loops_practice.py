@@ -7,7 +7,7 @@ class Practice:
     def list_numbers(self):
         start = 1
         end = 8
-        limit = 5
+        limit = 6
 
         numbers = list(range(start, end))
         for n in numbers:
