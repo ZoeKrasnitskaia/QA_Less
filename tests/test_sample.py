@@ -2,7 +2,7 @@ def test_list_numbers(practice):
     practice.list_numbers()
 
 
-def test_list_words(practice):
+def test_list_words(practice, setup):
     practice.list_words()
 
 

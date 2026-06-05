@@ -1,7 +1,5 @@
 import pytest
-
 from tests.loops_practice import Practice
-
 
 @pytest.fixture(scope="module")
 def practice():
