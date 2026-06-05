@@ -4,10 +4,10 @@ import time
 
 class Practice:
 
-    def list_numbers(self):
-        start = 1
-        end = 8
-        limit = 6
+    def list_numbers(self, start, end, limit):
+        # start = 1
+        # end = 8
+        # limit = 6
 
         numbers = list(range(start, end))
         for n in numbers:
