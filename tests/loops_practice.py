@@ -43,11 +43,11 @@ class Practice:
             iteration += 1
 
 
-object_for_pract1 = Practice()
-object_for_pract1.list_numbers()
-
-object_for_words = Practice()
-object_for_words.list_words()
-
-object_for_rostics = Practice()
-object_for_rostics.simulate_rostics_load()
+# object_for_pract1 = Practice()
+# object_for_pract1.list_numbers()
+#
+# object_for_words = Practice()
+# object_for_words.list_words()
+#
+# object_for_rostics = Practice()
+# object_for_rostics.simulate_rostics_load()
