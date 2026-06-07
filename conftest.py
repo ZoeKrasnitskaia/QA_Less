@@ -1,5 +1,6 @@
 import pytest
 from tests.loops_practice import Practice
+from selenium import webdriver
 
 @pytest.fixture(scope="module")
 def practice():
@@ -20,3 +21,11 @@ def open_file():
     yield file
     file.close()
     print("File closed")
+
+@pytest.fixture
+def driver():
+    options = webdriver.ChromeOptions()
+    driver = webdriver.Chrome(options=options)
+    driver.implicitly_wait(10)
+    yield driver
+    driver.quit()
