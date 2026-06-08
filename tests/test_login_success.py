@@ -2,7 +2,6 @@ from pages.LoginPage import LoginPage
 
 
 def test_login_success(driver):
-    # Инициализируем страницу авторизации
     login_page = LoginPage(driver)
 
     # Шаг 1: Открываем страницу
