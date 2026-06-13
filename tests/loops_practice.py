@@ -42,12 +42,12 @@ class Practice:
             time.sleep(pause_duration)
             iteration += 1
 
+    def new_lesson(self):
+        for i in range(100):
+            if i == 3:
+                break
 
-object_for_pract1 = Practice()
-object_for_pract1.list_numbers()
 
-object_for_words = Practice()
-object_for_words.list_words()
+new_lesson = Practice()
+new_lesson.new_lesson()
 
-object_for_rostics = Practice()
-object_for_rostics.simulate_rostics_load()
