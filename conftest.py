@@ -1,6 +1,8 @@
 import pytest
-from tests.loops_practice import Practice
+from pages.loops_practice import Practice
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 @pytest.fixture(scope="module")
 def practice():
@@ -24,8 +26,14 @@ def open_file():
 
 @pytest.fixture
 def driver():
-    options = webdriver.ChromeOptions()
-    driver = webdriver.Chrome(options=options)
-    driver.implicitly_wait(10)
+    # options = webdriver.ChromeOptions()
+    # driver = webdriver.Chrome(options=options)
+    # driver.implicitly_wait(10)
+    # yield driver
+    # driver.quit()
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service)
+
     yield driver
+
     driver.quit()

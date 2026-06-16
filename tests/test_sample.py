@@ -1,7 +1,5 @@
 import pytest
 
-from tests.loops_practice import Practice
-
 
 @pytest.mark.parametrize(
     "start, end, limit",
