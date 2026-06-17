@@ -1,36 +1,46 @@
+import os
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-# Из файла BaseApp.py импортируем класс BasePage
 from .BaseApp import BasePage
 
+
 class LoginPage(BasePage):
-    USERNAME_INPUT = (By.ID, "login-email")
-    PASSWORD_INPUT = (By.ID, "login-password")
-    SUBMIT_BUTTON = (By.CSS_SELECTOR, "#login-form button")
+    LOGIN_PATH = "login"
+    USERNAME_INPUT = (By.XPATH, "//input[@id='login_field']")
+    PASSWORD_INPUT = (By.XPATH, "//input[@id='password']")
+    SUBMIT_BUTTON = (By.XPATH, "//input[@value='Sign in']")
+    AVATAR_IMG = (By.XPATH, "//img[@data-testid='github-avatar']")
+    USERNAME_IN_MENU = (By.XPATH, f"//div[@title='{os.getenv('GH_USER')}']")
+    LOGIN_ERROR = (By.XPATH, "//div[@class ='flash-container']")
 
     def open(self):
-        # Открывает страницу логина (например, /login)
-        super().open()
+        self.driver.get(f"{self.base_url}{self.LOGIN_PATH}")
 
     def login(self, username, password):
-        username_field = WebDriverWait(self.driver, 10).until(
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(
             EC.visibility_of_element_located(self.USERNAME_INPUT)
-        )
-        username_field.clear()
-        username_field.send_keys(username)
+        ).send_keys(username)
 
-        password_field = WebDriverWait(self.driver, 10).until(
+        wait.until(
             EC.visibility_of_element_located(self.PASSWORD_INPUT)
-        )
-        password_field.clear()
-        password_field.send_keys(password)
+        ).send_keys(password)
 
-        login_button = WebDriverWait(self.driver, 10).until(
+        wait.until(
             EC.element_to_be_clickable(self.SUBMIT_BUTTON)
-        )
-        login_button.click()
+        ).click()
 
-    def is_login_successful(self):
-        return self.driver.find_element(*self.SUBMIT_BUTTON).is_displayed()
+    def login_success(self):
+        wait = WebDriverWait(self.driver, 10)
+        avatar = wait.until(EC.visibility_of_element_located(self.AVATAR_IMG))
+        avatar.click()
+        username_in_menu = wait.until(
+            EC.visibility_of_element_located(self.USERNAME_IN_MENU)
+        )
+        return avatar, username_in_menu
+
+    def get_error_message(self):
+        wait = WebDriverWait(self.driver, 10)
+        error = wait.until(EC.visibility_of_element_located(self.LOGIN_ERROR))
+        return error
