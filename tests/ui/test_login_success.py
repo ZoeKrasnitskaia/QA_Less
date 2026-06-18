@@ -18,11 +18,17 @@ def test_login_success(driver):
     assert username_in_menu.is_displayed(), "Меню не отображаентся"
 
 @pytest.mark.ui
-def test_login_with_wrong_creds(driver):
+@pytest.mark.parametrize(
+    "invalid_login, invalid_password",
+    [
+        ("pipi", "Qwerty1!"),
+        ("wrong1234!@#$%^&*()", "wrong_pass123456789!@#$%^&*()"),
+        (".", "Qwerty1!"),
+    ]
+)
+def test_login_with_wrong_creds(driver, invalid_login, invalid_password):
     login_page = LoginPage(driver)
     login_page.open()
-    wrong_login = 'pipi'
-    wrong_password = 'Qwerty1!'
-    login_page.login(wrong_login, wrong_password)
+    login_page.login(invalid_login, invalid_password)
     error = login_page.get_error_message()
     assert error.is_displayed(), "Сообщение об ошибке не отображается"
